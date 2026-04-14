@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enterprise AE, Life Sciences · Box</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #0071F7; --blue-dark: #0052B8; --blue-light: #E8F2FF; --blue-mid: #B8D4FF;
+    --ink: #0A0F1E; --ink-mid: #3D4461; --ink-light: #6E7896;
+    --surface: #F7F9FC; --border: rgba(0,113,247,0.12);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: white; color: var(--ink); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #0052B8 0%, #0071F7 50%, #4DA3FF 100%);
+    padding: 3.5rem 2.5rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .hero-inner { position: relative; max-width: 760px; margin: 0 auto; }
+  .pill { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25); border-radius: 100px; padding: 5px 14px; font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.9); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 1.5rem; }
+  .dot { width: 5px; height: 5px; background: #7DFFB8; border-radius: 50%; animation: pulse 2s ease infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)} }
+  .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.2rem, 5vw, 3.8rem); color: white; line-height: 1.1; margin-bottom: 0.5rem; }
+  .hero h1 em { font-style: italic; color: rgba(255,255,255,0.7); }
+  .hero-role { font-size: 0.9rem; color: rgba(255,255,255,0.65); margin-bottom: 1.25rem; font-weight: 300; }
+
+  /* PROCESS */
+  .process-list { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.5rem; }
+  .pstage { display: flex; align-items: center; gap: 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 0.875rem 1.1rem; }
+  .pstage.key { background: var(--blue-light); border-color: var(--blue-mid); }
+  .pnum { width: 28px; height: 28px; background: white; border: 1.5px solid var(--blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 500; color: var(--blue); flex-shrink: 0; }
+  .pstage.key .pnum { background: var(--blue); color: white; }
+  .pinfo { flex: 1; }
+  .pname { font-size: 0.875rem; font-weight: 500; color: var(--ink); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .pmeta { font-size: 11px; color: var(--ink-light); margin-top: 2px; font-weight: 300; }
+  .ptag { font-size: 10px; font-weight: 500; background: white; border: 1px solid var(--border); color: var(--ink-light); padding: 2px 8px; border-radius: 100px; }
+  .ptag-blue { background: var(--blue-light); color: var(--blue-dark); border-color: var(--blue-mid); }
+  .ptag-green { background: #E8FAF0; color: #1A7A45; border-color: #9fe0bc; }
+  .hero-sub { font-size: 1rem; color: rgba(255,255,255,0.78); max-width: 520px; line-height: 1.7; font-weight: 300; margin-bottom: 2rem; }
+  .hero-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { background: rgba(255,255,255,0.13); border: 1px solid rgba(255,255,255,0.22); border-radius: 6px; padding: 5px 12px; font-size: 12px; color: rgba(255,255,255,0.85); font-weight: 400; }
+
+  /* BODY */
+  .body { max-width: 760px; margin: 0 auto; padding: 0 2.5rem 4rem; }
+
+  /* HOOK */
+  .hook { border-left: 3px solid var(--blue); padding: 1.25rem 1.5rem; margin: 2.5rem 0; background: var(--blue-light); border-radius: 0 10px 10px 0; }
+  .hook p { font-size: 1rem; color: var(--ink-mid); font-weight: 300; line-height: 1.8; }
+  .hook strong { font-weight: 500; color: var(--ink); }
+
+  /* SECTION */
+  .sec { margin: 2.5rem 0; }
+  .sec-label { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.75rem; }
+  .sec h2 { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: var(--ink); line-height: 1.2; margin-bottom: 1rem; }
+  .sec h2 em { font-style: italic; color: var(--ink-mid); }
+
+  /* THREE COLS */
+  .three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; }
+  .card-num { font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: var(--blue); line-height: 1; margin-bottom: 4px; }
+  .card-label { font-size: 12px; color: var(--ink-light); font-weight: 300; }
+
+  /* BULLETS */
+  .bullets { display: flex; flex-direction: column; gap: 0.6rem; }
+  .bullet { display: flex; align-items: flex-start; gap: 10px; font-size: 0.9rem; color: var(--ink-mid); font-weight: 300; line-height: 1.6; }
+  .b-dot { width: 5px; height: 5px; background: var(--blue); border-radius: 50%; flex-shrink: 0; margin-top: 8px; }
+
+  /* TWO COLS */
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .dark-card { background: var(--ink); border-radius: 12px; padding: 1.5rem; }
+  .dark-card .sec-label { color: rgba(255,255,255,0.4); }
+  .dark-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: white; margin-bottom: 0.75rem; }
+  .dark-card p { font-size: 0.85rem; color: rgba(255,255,255,0.7); font-weight: 300; line-height: 1.7; }
+
+  .blue-card { background: var(--blue); border-radius: 12px; padding: 1.5rem; }
+  .blue-card .sec-label { color: rgba(255,255,255,0.6); }
+  .blue-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: white; margin-bottom: 0.75rem; }
+  .blue-card p { font-size: 0.85rem; color: rgba(255,255,255,0.78); font-weight: 300; line-height: 1.7; }
+
+  /* CTA */
+  .cta-bar { background: var(--ink); border-radius: 16px; padding: 2rem 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; margin: 2.5rem 0; flex-wrap: wrap; }
+  .cta-bar h3 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: white; margin-bottom: 0.25rem; }
+  .cta-bar p { font-size: 0.875rem; color: rgba(255,255,255,0.6); font-weight: 300; }
+  .cta-btn { background: var(--blue); color: white; text-decoration: none; font-size: 0.9rem; font-weight: 500; padding: 12px 24px; border-radius: 8px; white-space: nowrap; flex-shrink: 0; transition: background 0.2s; display: inline-block; }
+  .cta-btn:hover { background: var(--blue-dark); }
+
+  /* DIVIDER */
+  hr { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+
+  /* CLIENT LOGOS */
+  .clients { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.75rem; }
+  .client-chip { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 5px 14px; font-size: 12px; font-weight: 500; color: var(--ink-mid); }
+
+  /* VALUES */
+  .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.875rem; margin-bottom: 1.5rem; }
+  .vcard { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.1rem 1.25rem; }
+  .vtitle { font-size: 0.875rem; font-weight: 500; color: var(--ink); margin-bottom: 0.35rem; }
+  .vcard p { font-size: 0.825rem; color: var(--ink-light); font-weight: 300; line-height: 1.65; }
+
+  /* QUOTES */
+  .culture-quotes { display: grid; grid-template-columns: 1fr 1fr; gap: 0.875rem; margin-bottom: 1.25rem; }
+  .cquote { background: var(--ink); border-radius: 10px; padding: 1.25rem; }
+  .cquote p { font-size: 0.825rem; color: rgba(255,255,255,0.72); font-weight: 300; line-height: 1.7; font-style: italic; margin-bottom: 0.75rem; }
+  .cquote-attr { font-size: 11px; color: rgba(255,255,255,0.35); font-weight: 400; }
+
+  /* LINKEDIN */
+  .linkedin-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .li-chip { background: var(--blue-light); color: var(--blue-dark); border: 1px solid var(--blue-mid); border-radius: 6px; padding: 6px 14px; font-size: 12px; font-weight: 500; text-decoration: none; transition: background 0.2s; }
+  .li-chip:hover { background: var(--blue-mid); }
+
+  @media (max-width: 600px) {
+    .body { padding: 0 1.25rem 3rem; }
+    .hero { padding: 2.5rem 1.25rem 2rem; }
+    .three, .two, .values-grid, .culture-quotes { grid-template-columns: 1fr; }
+    .cta-bar { flex-direction: column; align-items: flex-start; }
+    .pname { font-size: 0.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="pill"><div class="dot"></div>Now Hiring · London</div>
+    <h1>Enterprise Account Executive</h1>
+    <p class="hero-role">Life Sciences &nbsp;·&nbsp; <a href="https://careers.box.com/en/jobs/7766271/enterprise-account-executive/" target="_blank" style="color:rgba(255,255,255,0.85);text-decoration:underline;text-underline-offset:3px;font-size:0.85rem;">View full JD →</a></p>
+    <p class="hero-sub">Real accounts. Real pipeline. Household names like AstraZeneca, GSK & Novo Nordisk. A genuine land-and-expand play with room to make your mark across UKI, Benelux & the Nordics.</p>
+    <div class="hero-chips">
+      <span class="chip">$800–900k USD quota</span>
+      <span class="chip">25 existing accounts</span>
+      <span class="chip">50+ prospects</span>
+      <span class="chip">Hybrid · London</span>
+    </div>
+  </div>
+</div>
+
+<div class="body">
+
+  <div class="hook">
+    <p><strong>No Life Sciences experience required.</strong> We're looking for a great enterprise seller who wants to own this patch. The territory, the accounts, and the pipeline are already there — what we need is someone who knows how to multithread, expand, and close.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-label">The Numbers</div>
+    <div class="three">
+      <div class="card"><div class="card-num">$10M+</div><div class="card-label">ARR across 25 existing accounts</div></div>
+      <div class="card"><div class="card-num">50+</div><div class="card-label">Prospects ready to be worked</div></div>
+      <div class="card"><div class="card-num">60:40</div><div class="card-label">Expand vs new — but everyone hunts</div></div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="sec">
+    <div class="sec-label">Existing Clients</div>
+    <h2>You're inheriting <em>household names</em></h2>
+    <div class="clients">
+      <span class="client-chip">AstraZeneca</span>
+      <span class="client-chip">GSK</span>
+      <span class="client-chip">Novo Nordisk</span>
+      <span class="client-chip">+17 more accounts</span>
+    </div>
+    <p style="margin-top:1rem;font-size:0.9rem;color:var(--ink-light);font-weight:300;line-height:1.7;">Box already powers GxP-compliant content workflows for 2,200+ life sciences companies globally. The credibility is there — your job is to deepen the relationships and unlock the whitespace.</p>
+  </div>
+
+  <hr>
+
+  <div class="sec">
+    <div class="sec-label">The Opportunity</div>
+    <h2>Why this is the <em>right move</em></h2>
+    <div class="two">
+      <div class="blue-card">
+        <div class="sec-label">The upside</div>
+        <h3>Significant pipeline, ready to work</h3>
+        <p>This territory has real pipeline opportunity across EMEA Life Sciences. The accounts are there, the product has strong traction in the sector, and the market tailwind is real — AI + regulated content is Box's sweet spot.</p>
+      </div>
+      <div class="dark-card">
+        <div class="sec-label">The challenge</div>
+        <h3>Multithread or stall</h3>
+        <p>Deal cycles are long and we're too often stuck with the original contact. The person who wins here knows how to map an account, build a POD, and drive executive engagement. If that's your thing — this is your territory.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="sec">
+    <div class="sec-label">Who We're Looking For</div>
+    <h2>Create, expand, <em>close</em></h2>
+    <div class="bullets">
+      <div class="bullet"><div class="b-dot"></div>Land-and-expand mindset — 60:40 expansion/new, but you need NN deals on your CV</div>
+      <div class="bullet"><div class="b-dot"></div>6+ years enterprise SaaS/cloud with a clear, repeatable sales process (MEDDIC a big plus)</div>
+      <div class="bullet"><div class="b-dot"></div>Comfortable managing a POD — rallying SEs, CSMs, OBRs around your accounts</div>
+      <div class="bullet"><div class="b-dot"></div>Experience multithreading into complex orgs — not just the person who signed the original deal</div>
+      <div class="bullet"><div class="b-dot"></div>Wants to own a vertical and build something — not just inherit a patch and maintain it</div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="sec">
+    <div class="sec-label">Interview Process</div>
+    <h2>7 stages, <em>no surprises</em></h2>
+    <div class="process-list">
+      <div class="pstage"><div class="pnum">1</div><div class="pinfo"><div class="pname">Shannon Sweeney <span class="ptag">Recruiter Screen</span></div><div class="pmeta">30 mins · Video</div></div></div>
+      <div class="pstage"><div class="pnum">2</div><div class="pinfo"><div class="pname">Brian Massey <span class="ptag">Sales Deep Dive</span></div><div class="pmeta">45 mins · Video</div></div></div>
+      <div class="pstage"><div class="pnum">3</div><div class="pinfo"><div class="pname">Lucy Black / Sheila Fratini <span class="ptag">Partner Experience</span></div><div class="pmeta">30 mins · Video</div></div></div>
+      <div class="pstage"><div class="pnum">4</div><div class="pinfo"><div class="pname">Elizabeth Flew <span class="ptag">Culture Add</span></div><div class="pmeta">30 mins · Video</div></div></div>
+      <div class="pstage key"><div class="pnum">5</div><div class="pinfo"><div class="pname">Presentation <span class="ptag ptag-blue">Brief shared in advance</span></div><div class="pmeta">1 hour · Video</div></div></div>
+      <div class="pstage"><div class="pnum">6</div><div class="pinfo"><div class="pname">Samantha Wessels <span class="ptag ptag-green">In office</span></div><div class="pmeta">30 mins · London</div></div></div>
+      <div class="pstage"><div class="pnum">7</div><div class="pinfo"><div class="pname">Brian Massey <span class="ptag ptag-green">In office</span></div><div class="pmeta">30 mins · London · Final Q&A</div></div></div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="sec">
+    <div class="sec-label">Still want to know more?</div>
+    <h2>Boxers make Box <em>a 10x company</em></h2>
+    <p style="font-size:0.9rem;color:var(--ink-light);font-weight:300;line-height:1.75;margin-bottom:1.5rem;">The values aren't wallpaper. They're how decisions get made, how people get recognised, and how the team in London shows up every day.</p>
+    <div class="values-grid">
+      <div class="vcard"><div class="vtitle">Take risks. Fail fast. GSD.</div><p>Big bets, constant iteration, learning from mistakes. The world moves fast — Box moves with it.</p></div>
+      <div class="vcard"><div class="vtitle">Blow customers' minds.</div><p>Customers are at the centre of everything. Not just good experiences — ones they never imagined possible.</p></div>
+      <div class="vcard"><div class="vtitle">10x it.</div><p>Dream big, then make it bigger. The best ideas at Box don't get incrementally improved — they get 10x'd.</p></div>
+      <div class="vcard"><div class="vtitle">Be an owner.</div><p>Act like it's your company. Have opinions, take initiative, make things better because you can.</p></div>
+      <div class="vcard"><div class="vtitle">Make mom proud.</div><p>Do the right thing — always. In how you treat customers, colleagues, and anyone else you interact with at Box.</p></div>
+      <div class="vcard"><div class="vtitle">Bring your whole self to work.</div><p>Box is built on belonging. Show up as you are — diverse perspectives and lived experiences make the team stronger.</p></div>
+    </div>
+    <div class="culture-quotes">
+      <div class="cquote">
+        <p>"The company culture is built on real values that are discussed and recognised every day — not just meaningless mumbo jumbo brought up in orientation and never again."</p>
+        <div class="cquote-attr">— Boxer, Sales team</div>
+      </div>
+      <div class="cquote">
+        <p>"Everyone wants to make sure we're winning together and 10x-ing our professional development. The community at Box is genuinely supportive."</p>
+        <div class="cquote-attr">— Boxer, Sales team</div>
+      </div>
+    </div>
+ 
+  </div>
+
+  <div class="cta-bar">
+    <div>
+      <h3>Sounds like you?</h3>
+      <p>Book 15 minutes with Shannon — no CV needed, just a quick conversation.</p>
+    </div>
+    <a href="https://mloop.in/s/7v661F3vDWJ" target="_blank" class="cta-btn">Book a call →</a>
+  </div>
+
+</div>
+</body>
+</html>
